@@ -6,24 +6,21 @@ const exphbs=require('express-handlebars');
 
 app.use(express.static(path.join(__dirname,'public')));
 
+//set view engine
+
 app.engine('handlebars',exphbs({defaultLayout:'home'}));
 app.set('view engine','handlebars');
 
-app.get('/',(req,res)=>{
-  res.render('home/index');
-});
+//Load route
 
-app.get('/about',(req,res)=>{
-  res.render('home/about');
-});
+const home=require('./routes/home/index');
+const admin=require('./routes/admin/index');
 
-app.get('/login',(req,res)=>{
-  res.render('home/login');
-});
+//Use Routes
 
-app.get('/register',(req,res)=>{
-  res.render('home/register');
-});
+app.use('/',home);
+app.use('/admin',admin);
+
 
 app.listen(4500,()=>{
   console.log(`listening on port 4500`);
