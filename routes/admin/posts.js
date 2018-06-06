@@ -6,11 +6,11 @@ router.all('/*',(req,res,next)=>{
   next();
 });
 
-
-router.get('/',(req,res)=>{
-  res.render('admin/index');
+router.get('/', (req,res)=>{
+  res.send('it works');
 });
 
-
-
+router.get('/create', (req,res)=>{
+  res.render('admin/posts/create');
+});
 module.exports=router;
